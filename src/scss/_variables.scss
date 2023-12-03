@@ -1,0 +1,36 @@
+
+$colorBackgroundBase : #5a3;
+$colorBackgroundLight : #8c5; // lighten($colorBackgroundBase,20%);
+$colorBackgroundDark :  darken($colorBackgroundBase,20%);
+$colorBackgroundLightGray:#eee;
+$colorBackgroundGray:#ddd;
+$colorBackgroundDarkGray:#aaa;
+$colorBackgroundLightWhite: #fff;
+
+$colorBackgroundListItemHover : #ffe;
+
+$colorGray:#555;
+$colorDarkGray:#333;
+$colorLightGray:#777;
+
+$borderRadius:5px;
+
+$footerBackgroundColor:#555;
+
+// common settings
+$baseFontSize: 0.8em;
+
+// input settings
+$inputBorderColor:  #ddd;
+$inputPadding : 5px;
+$inputBackground:#fff;
+$inputBackgroundFocused:#ffd;
+
+
+
+// structure settings
+
+$headerHeight: 60px;
+$footerheight: 50px;
+
+$small:400px;

@@ -1,0 +1,16 @@
+@import "src/scss/variables";
+
+.editViewContainer{
+    
+    padding: 20px;
+    border-radius: $borderRadius;
+    background-color: $colorBackgroundLight;
+
+    & .buttonContainer{
+      margin-top: 10px;  
+    }
+
+    & .errorMessage{
+        color: darkred;
+    }
+}

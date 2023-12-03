@@ -1,0 +1,33 @@
+@import "src/scss/variables";
+
+:host {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;     
+    bottom:0px;
+    left:0px;
+    right:0px;
+    background-color:$footerBackgroundColor;
+    color:#999;
+    padding: 5px;
+    height: $footerheight;
+  }
+  
+  .footermessage {
+    display: inline-block;
+    padding:5px 10px;
+  }
+  
+  button {
+    display: block;
+    float:right;
+  }
+  
+  
+  @media (max-width: 600px) {
+    :host {
+      
+      font-size:$baseFontSize;          
+    }
+  }

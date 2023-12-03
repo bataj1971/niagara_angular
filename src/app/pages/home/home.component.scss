@@ -1,0 +1,92 @@
+@import "src/scss/variables";
+
+.card {
+    position: absolute;
+    top:30%;
+    bottom:20%;
+    right:20%;
+    left:20%;
+
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    border:none;
+    font-size: 1.2em;
+    background-color:transparent;
+}
+
+
+.lead1,.lead2,.lead3,.lead4,.lead5 {
+    opacity: 0;
+    animation: fadeIn 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.lead1 {
+    animation-delay: 0s;
+}
+
+.lead2 {
+    text-align: center;
+    animation-delay: 1s;
+    font-size: 2em;
+    color:$colorLightGray;
+}
+.lead3 {
+    text-align: right;
+    animation-delay: 2s;
+}
+.lead4 {
+    animation-delay: 3s;
+}
+.lead5 {
+    animation-delay: 3s;
+    margin-left:30px;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.homebackground {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.homebackground-image {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    /* background-image: url("~src/assets/img/some_logo.png") ;    */
+    background-repeat: no-repeat;
+    background-position: center 20%;
+    background-size: 40%;
+    // opacity: 0.6;
+    animation:spin 1s linear;
+
+}
+.card-footer1 {
+    position: absolute;
+    bottom:10px;
+    left:20%;
+}
+
+div>ul>li {
+    list-style-type: none;
+}
+div>ul>li>ul>li {
+    list-style-type: square;
+}
+
+@keyframes spin{
+	from{transform:scale(-100%,100%)}
+	to{transform:rotate(100%,100%)}
+}

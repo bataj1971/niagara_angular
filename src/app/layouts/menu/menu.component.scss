@@ -1,0 +1,28 @@
+@import "src/scss/variables";
+:host {
+    position: sticky;
+    top:0;
+    height: $headerHeight;
+    z-index: 1000;
+} 
+#my-nav {
+    width: auto;
+}
+.userinfo {
+    
+    float:right;
+    margin-right: 5px;
+    & .userinfoname {
+        padding-right: 10px;      
+        display: inline-block;
+        color:$colorBackgroundLightWhite
+    }
+    & .btn {
+        background-color: $colorBackgroundLight;
+        display: inline-block;        
+    }
+    &.show {
+        display: block;
+    }
+}
+

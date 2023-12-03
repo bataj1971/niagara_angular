@@ -1,0 +1,16 @@
+<div class="editViewContainer">
+    <form #f="ngForm" (ngSubmit) = "submitForm()"  (keydown.control.enter)="saveForm()">
+        <fieldset class="fieldContainer">
+            <legend>{{title}} {{create ? 'Create' : 'Modify'}}</legend>
+
+            <ng-content></ng-content>
+        </fieldset>
+        <div class="errorMessage">
+            {{errorMessage}}
+        </div>
+        <div class="buttonContainer">
+            <button class="btn btn-primary" type="button" (click)="saveForm()">Save Record</button>
+            <button class="btn btn-danger" type="button" (click)="cancelForm()">Cancel Form</button>
+        </div>
+    </form>
+</div>

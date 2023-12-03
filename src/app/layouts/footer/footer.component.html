@@ -1,0 +1,12 @@
+
+
+  <div class='footermessage'>  
+    {{footerMessage}}
+  </div>
+  
+  <app-messages *ngIf='showMessages'></app-messages>
+  
+  <button class="btn btn-primary" *ngIf='!showMessages' (click)='setShowMessagages(true)'>show messages</button>
+  <button class="btn btn-primary" *ngIf='showMessages' (click)='setShowMessagages(false)'>hide messages</button>
+    
+  

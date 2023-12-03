@@ -1,0 +1,36 @@
+@import "src/scss/variables";
+
+.inputWrapper {
+    position: relative;
+    
+    width:100%;
+    display: inline;
+    & .selectedItem {
+        background-color: #ffa;
+        /* font-weight: bold; */
+    }
+
+
+    & .referenceList {
+        position: absolute;
+        left:0;
+        z-index: 1000;
+        background-color: white;
+        width: auto;
+        min-width: 400px;
+        border: solid 1px gray;
+
+        & table {
+            width: 100%;
+
+            & tr:hover td {
+                background-color: #ffa;
+            }
+
+            & td {
+                padding: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}

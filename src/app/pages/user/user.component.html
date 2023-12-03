@@ -1,0 +1,154 @@
+<div class="" *ngIf="showHeaders">
+    <h2>{{this.title}}    </h2>
+</div>
+
+<div *ngIf="mode==0">loading</div>
+
+<app-list #list *ngIf="mode==1" 
+[listView] = "listView"
+[fulltextSearch]="fulltextSearch" 
+[dataService] = "dataService"
+[tableStructure] = "tableStructure"
+onUpdateList="updateList()"
+(onSetStatus) = "setMode($event)"
+[fixedSearchFilter]="fixedSearchFilter" 
+[searchFilter]="searchFilter" 
+
+>
+</app-list>
+
+<app-detail *ngIf="mode==3">
+
+
+    <div class="recordDetails">
+        <div class="detailHeader">
+            {{currentRecord.name}} 
+             <button type="button" class='btn btn-primary' (click)='openListMode()'>Back to List mode</button>
+             
+ 
+             <!-- <button *ngIf="currentRecord.record_status === 'active'" type="button" class="btn btn-danger" (click)="setToInactive()">Set inactive</button>
+             <button *ngIf="currentRecord.record_status !== 'active'" type="button" class="btn btn-primary" (click)="setToActive()">Reset to active</button>     -->
+             <button type="button" class='btn btn-primary' (click)='openEditMode(currentRecord.id)'>Edit record</button>
+         
+     </div>
+     
+        <div class="recordDetail">
+            <div class="recordDetailLabel">Name:</div>
+            <div class="recordDetailValue">{{currentRecord.name}}</div>
+        </div>
+        <div class="recordDetail">
+            <div class="recordDetailLabel">Login-name:</div>
+            <div class="recordDetailValue">{{currentRecord.loginname}}</div>
+        </div>
+        <div class="recordDetail textarea">
+            <div class="recordDetailLabel">Notes:</div>
+            <div class="recordDetailValue">{{currentRecord.description}}</div>
+        </div>
+
+        <hr>
+        <div class="recordDetail">
+            <div class="recordDetailLabel">Address:</div>
+            <div class="recordDetailValue">{{currentRecord.address.name}}</div>
+        </div>
+        <div class="recordDetail">
+            <div class="recordDetailLabel">City:</div>
+            <div class="recordDetailValue">{{currentRecord.address.city}}</div>
+        </div>
+        <div class="recordDetail">
+            <div class="recordDetailLabel">Street:</div>
+            <div class="recordDetailValue">{{currentRecord.address.street}}</div>
+        </div>
+        <div class="recordDetail">
+            <div class="recordDetailLabel">Zipcode:</div>
+            <div class="recordDetailValue">{{currentRecord.address.zipcode}}</div>
+        </div>
+        <div class="recordDetail">
+            <div class="recordDetailLabel">State:</div>
+            <div class="recordDetailValue">{{currentRecord.address.state}}</div>
+        </div>
+        <div class="recordDetail">
+            <div class="recordDetailLabel">Address notes:</div>
+            <div class="recordDetailValue">{{currentRecord.address.description}}</div>
+        </div>
+
+
+        <hr>
+        <div class="recordDetail">
+            <div class="recordDetailLabel">Created:</div>
+            <div class="recordDetailValue">{{currentRecord.created_at}} / {{currentRecord.created_by_user?.name}}</div>
+        </div>
+        <div class="recordDetail">
+            <div class="recordDetailLabel">Last modified:</div>
+            <div class="recordDetailValue">{{currentRecord.modified_at}} / {{currentRecord.modified_by_user?.name}}</div>
+        </div>
+
+    </div>
+
+    
+</app-detail>
+
+<app-edit *ngIf="mode==2 ||mode==5" (onSubmit)="handleEditFormSubmit($event)">
+
+    <div class="recordEdits">
+
+        <div class="form-group">
+            <label for="short_name">Login-name:</label>
+            <input class="form-control" id="short_name" name="short_name" placeholder="short name"
+                [disabled] = "currentRecord.id !==''" 
+                [(ngModel)]="currentRecord.loginname">
+                <div class="fieldErrorMessage">{{fieldErrorMessages['short_name']}}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input class="form-control" id="name" name="name" placeholder="name" [(ngModel)]="currentRecord.name">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['name']}}</div>
+        </div>
+
+        <hr>
+        <div class="form-group">
+            <label for="name">Address:</label>
+            <input class="form-control" id="address_name" name="address_name" placeholder="address name" [(ngModel)]="currentRecord.address.name">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.name']}}</div>
+        </div>
+        <div class="form-group">
+            <label for="name">City:</label>
+            <input class="form-control" id="address_city" name="address_city" placeholder="city" [(ngModel)]="currentRecord.address.city">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.city']}}</div>
+        </div>
+        <div class="form-group">
+            <label for="name">Street:</label>
+            <input class="form-control" id="address_street" name="address_street" placeholder="street" [(ngModel)]="currentRecord.address.street">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.street']}}</div>
+        </div>
+        <div class="form-group">
+            <label for="name">Zipcode:</label>
+            <input class="form-control" id="address_zipcode" name="address_zipcode" placeholder="zipcode" [(ngModel)]="currentRecord.address.zipcode">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.zipcode']}}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="name">State:</label>
+            <input class="form-control" id="address_state" name="address_state" placeholder="state" [(ngModel)]="currentRecord.address.state">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.state']}}</div>
+        </div>
+        <div class="form-group">
+            <label for="name">Address notes:</label>
+            <input class="form-control" id="address_description" name="address_description" placeholder="address notes" [(ngModel)]="currentRecord.address.description">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.description']}}</div>
+        </div>
+
+        <hr>
+
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" name="description" placeholder="description"
+                [(ngModel)]="currentRecord.description">
+        </textarea>
+        <div class="fieldErrorMessage">{{fieldErrorMessages['description']}}</div>
+        </div>
+    </div>
+</app-edit>
+
+

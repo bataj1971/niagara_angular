@@ -1,0 +1,283 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+@import "src/scss/variables";
+
+h3.sticky {
+    padding: 5px;
+    background-color: $colorBackgroundBase;
+    color: white;
+    // display: block;
+    // position: sticky;
+    top: 0px;
+    border-radius: 0 0px $borderRadius $borderRadius;
+    // overflow: hidden;    
+}
+
+h3 div.searchFilter input {
+    font-size: $baseFontSize;
+}
+
+_input {
+    background-color: $inputBackground;
+    border: solid 1px $inputBorderColor;
+    border-radius: $borderRadius;
+    padding: $inputPadding;
+}
+
+input,
+select {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+INPUT.form-control:focus {
+    outline: none;
+    background-color: $inputBackgroundFocused;
+}
+
+a,
+a.visited,
+a.hover {
+    text-decoration: none;
+    color: #3a7;
+}
+
+.navbar-dark .navbar-nav .show>.nav-link,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #fff;
+    background-color: #444;
+    border-radius: 5px;
+}
+
+/*  bootstrap modifications */
+.fixed-top {
+    position: relative;
+}
+
+.btn {
+    /* margin-left: 10px;  */
+    margin-right: 10px;
+    border: none;
+    border-radius: $borderRadius;
+        /* padding: 0px 10px 0px 10px; */
+}
+
+.btn.btn-primary {
+    background-color: $colorBackgroundBase;
+}
+
+.navbar-brand {
+    padding-left: 10px;
+}
+
+/* page header*/ 
+h2 {
+    background-color: $colorBackgroundLight;
+    color:$colorBackgroundLightWhite;
+    padding:5px;
+    border-radius: $borderRadius;
+}
+
+/*   list view css */
+table.table thead tr.tableheader th {
+    position: sticky;
+    top: $headerHeight;
+    background-color: $colorBackgroundLight;
+    color:$colorBackgroundLightWhite;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &.excelExport {
+        text-align: right;
+        padding-right: 5px;
+    }
+
+    &:hover {
+        background-color: $colorBackgroundBase;
+    }
+}
+
+table.table tbody tr td {
+    vertical-align: middle;
+    white-space: pre-wrap;
+    vertical-align: top;
+}
+
+table.table tbody tr td.norecords {
+    text-align: center;   
+
+}
+
+table.table tbody tr:hover td {
+    cursor: pointer;
+    background-color: $colorBackgroundListItemHover;
+}
+
+table.table tbody tr.safe td {
+    color: darkgreen;
+    font-weight: bold;    
+    // background-color: $colorBackgroundListItemHover;
+}
+
+table.table thead tr th:first-child {
+    border-radius: $borderRadius 0 0 $borderRadius;
+}
+
+table.table thead tr th:last-child {
+    border-radius: 0 $borderRadius $borderRadius 0;
+}
+
+.listHeaderButtons {
+    display: inline-block;
+    float: right;
+}
+.activeOnlyFilter
+{    
+    display: inline-block;
+    float: right;
+    line-height: 35px;
+    & label {
+        padding-right: 5px;
+    }
+}
+
+// .recordName {
+//     font-size: 2em;
+//     padding: 0 10px;
+// }
+
+/* listview */
+table.table tr td.functionColumn {
+    max-width: 200px;
+    text-align: right;
+}
+
+.listHeader {
+
+    padding: 10px 0;
+
+    & .listSearchInput {
+
+        display: inline-block;
+        width: auto;
+        min-width: 350px;
+    }
+
+    & button.newRecord {
+        float: right;
+    }
+
+    & div.pageStatus {
+        display:inline-block;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+}
+
+/* editview */
+
+.recordEdits {
+    & .form-group{
+        margin-bottom: 10px;
+
+        & label {
+            display: inline-block;
+            font-weight: bold;
+            padding: 5px 10px 0px 0px;
+            width: 300px;
+            vertical-align: top;
+            text-align: right;
+        }
+
+        & .form-control {
+            display: inline-block;
+            width: calc(100% - 500px);
+        }
+
+        & .fieldErrorMessage {
+            color:darkred;
+            margin-left: 300px;
+        }
+    }
+}
+
+/* detailview */
+
+.recordDetails {
+    background-color: $colorBackgroundLightGray;
+    padding: 0;
+    border: solid 1px $colorBackgroundLightGray;
+    border-radius: $borderRadius;
+
+    & .detailHeader{
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 10px 10px 10px 10px ;
+        overflow: hidden;
+        /* background-color: $colorBackgroundGray; */ 
+        margin-bottom: 10px;
+    
+        & button {
+            float:right;
+        }
+    }
+    & .recordStat{
+        border:solid 1px gray;
+        &> .created {
+          display: inline-block;
+          width:50%;
+        }
+        &> .modified {
+            display: inline-block;
+            width:50%;            
+        }
+    }
+    & .recordDetail {
+
+
+        & .recordDetailLabel {
+            display: inline-block;
+            font-weight: bold;
+            ;
+            padding: 5px 10px 0px 5px;
+
+            width: 300px;
+            text-align: right;
+        }
+
+        & .recordDetailValue {
+            display: inline-block;
+            padding: 5px;
+            border: solid 1px $colorBackgroundLightWhite;
+            border-radius: $borderRadius;
+            background-color: $colorBackgroundLightWhite;
+            margin-bottom: 10px;
+            vertical-align: top;
+
+            width: calc(100% - 500px);
+
+
+            &:empty {
+                min-height: 36px;
+                line-height: 36px;
+            }
+
+        }
+
+        &.textarea {
+            & .recordDetailValue {
+                height: 120px;
+                overflow-y: auto;
+                white-space: pre-wrap;
+            }
+        }
+
+    }
+}

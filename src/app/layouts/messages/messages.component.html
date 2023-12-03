@@ -1,0 +1,6 @@
+
+<div class='messagebox '>
+    <div [class]='message.messageType' *ngFor = 'let message of messagesToShow'  > 
+      {{message.time}} {{message.text}}
+    </div>
+  </div>

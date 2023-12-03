@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" routerLink="home">NiagaraAngular</a>
+  <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbarMenu()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="my-nav" class="collapse navbar-collapse" [ngClass]="{ show: navbarMenuOpen }">
+    
+    <ul class="navbar-nav mr-auto">
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="adminDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+        >Sales</a>
+        <ul class="dropdown-menu" aria-labelledby="adminDropdownMenuLink">
+          <li><a class="dropdown-item" routerLink="receipts">Receipts</a></li>
+          <li><a class="dropdown-item" routerLink="customers">Customers</a></li>
+          <li><a class="dropdown-item" routerLink="articles">Articles</a></li>          
+        </ul>
+      </li>
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="adminDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+        >Auxiliary</a>
+        <ul class="dropdown-menu" aria-labelledby="adminDropdownMenuLink">
+          
+          <li><a class="dropdown-item" routerLink="article-categories">Article Categories</a></li>
+          <li><a class="dropdown-item" routerLink="customer-categories">Customer Categories</a></li>
+          <li><a class="dropdown-item" routerLink="currencies">Currencies</a></li>
+          <li><a class="dropdown-item" routerLink="countries">Countries</a></li>
+        </ul>
+      </li>
+
+
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="adminDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+        <ul class="dropdown-menu" aria-labelledby="adminDropdownMenuLink">
+          <li><a class="dropdown-item" routerLink="users">Users</a></li>
+          <li><a class="dropdown-item" routerLink="groups">Groups</a></li>
+          <li><a class="dropdown-item" routerLink="rights">Rights</a></li>
+        </ul>
+      </li>
+
+
+      <li class="nav-item" (click)="toggleNavbarMenu()">
+        <a class="nav-link" routerLink="help" routerLinkActive="active">Help</a>
+      </li>
+    </ul>
+  </div>
+  <div class="userinfo" [ngClass]="{ show: navbarMenuOpen }">
+    <div class="userinfoname">{{ appData.userName }}</div>
+  </div>
+</nav>

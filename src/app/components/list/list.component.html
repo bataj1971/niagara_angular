@@ -1,0 +1,73 @@
+<div>    
+    <div class="listHeader">
+        <button class="btn btn-primary" (click)="prevPage()"> &#11164; </button>
+
+        <div class= 'pageStatus'>
+            {{listView.page * listView.limit+1}} - {{math.min( (listView.page+1) * listView.limit ,recordCount)}} of
+            {{recordCount}}
+        </div>
+        <button class="btn btn-primary" (click)="nextPage()"> &#11166; </button>
+
+        <input class="form-control listSearchInput" type="text" placeholder="Search" aria-label="Search"
+            [(ngModel)]="listView.fulltextSearch" (input)="updateFulltextSeach()">
+
+        
+        <button *ngIf="showNewRecordButton" class="btn btn-primary newRecord" (click)="openNewRecordMode()">New record</button>
+        
+        <div  *ngIf="showwActiveOnlyCheckbox" class="activeOnlyFilter">
+            <label for="">Active only:</label>
+            <input type="checkbox"  [(ngModel)]="activeListedOnly"  (click)="setActiveListedOnly($event)">
+            
+        </div>
+
+        <ng-content select="[listHeaderButtons]"></ng-content>
+        
+
+
+    </div>
+
+    <table class='table'>
+        <thead>
+            <tr class="tableheader">
+                <th *ngFor="let displayField of tableStructure" (click)="setOrderbyField(displayField.fieldName)">
+                    {{displayField.getLabelForTableHeader()}}
+                    <span>{{getOrderBySign(displayField.fieldName)}}</span>
+                </th>
+                <th class='excelExport'>
+                    <button *ngIf="showNewExcelButton" class="btn btn-primary" (click)="exportToExcel()">Export to Excel</button>
+                </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr class="dataItem" *ngFor="let record of recordList"
+                (click)='openDetailMode(getIdValueFromRecord(record))'>
+                <td *ngFor="let displayField of tableStructure">{{displayField.getRenderedValue(record)}}</td>
+                <td class="functionColumn">
+                    <button *ngIf="showwItemDetailsButton" type="button" class='btn btn-primary'>Details</button>                 
+                    
+
+
+                </td>
+                <ng-container  [ngTemplateOutlet]="linePart" [ngTemplateOutletContext]="record"></ng-container >
+            </tr>
+
+            <tr *ngIf="recordList.length == 0">
+                <td colspan="100%" class='norecords'>
+                    {{(searching ? 'Searching...':'No records found')}}
+                    
+                </td>
+            </tr>
+
+            <tr *ngIf="errorMessage">
+                <td colspan="100%" class='errorMessage'>
+                    Error:  {{errorMessage}}                    
+                </td>
+            </tr>
+
+            
+
+        </tbody>
+    </table>
+    <ng-content></ng-content>
+</div>

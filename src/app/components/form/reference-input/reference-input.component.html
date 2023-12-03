@@ -1,0 +1,24 @@
+<div class="inputWrapper">
+    <input class="form-control" type="text" name="fulltextSearch" id="fulltextSearch" placeholder=""
+        aria-label="Search" autocomplete="off" [(ngModel)]="fulltextSearch" 
+        (keydown)="keyEvent($event)" 
+        (input)="updateFulltextSeach()"
+        [readOnly]="readonly"
+        [disabled]="disabled"
+        > 
+
+
+    <div class="referenceList" *ngIf="open">
+        <table class="table_">
+            <tr class="referenceListItem" *ngFor="let record of recordList ; index as i"
+                [ngClass]="{'selectedItem': i == selectedItem}" (click)="select(record)">
+                <td *ngFor="let fieldName of fieldListToShow">
+                    {{getRenderedFieldValue(fieldName,record)}}
+                </td>
+            </tr>
+            <tr *ngIf="fieldListToShow.length == 0">
+                <td colspan="100!">no records found..</td>
+            </tr>
+        </table>
+    </div>
+</div>
