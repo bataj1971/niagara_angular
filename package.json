@@ -7,7 +7,7 @@
     "buildlocaldev": "ng build --base-href /niagara_angular_dev/  --output-path=../../niagara_angular --configuration test",
     "builddev": "ng build --base-href /niagara_angular/  --output-path=../../niagara_angular --configuration test",
     "buildtest": "ng build --base-href /niagara_angular_test/S/  --output-path=../../niagara_angular --configuration test",
-    "buildprod": "ng build --base-href /niagara_angular/  --output-path=../../officeStock --configuration production",
+    "buildprod": "ng build --base-href /  --output-path=niagara_angular_prod --configuration production",
     "build": "echo \"use buildprod or buildtest \"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

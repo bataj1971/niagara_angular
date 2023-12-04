@@ -41,6 +41,9 @@ import { ArticleCategoryComponent } from './pages/article-category/article-categ
 import { CustomerCategoryComponent } from './pages/customer-category/customer-category.component';
 import { ReceiptComponent } from './pages/receipt/receipt.component';
 import { ReceiptLineComponent } from './pages/receipt/receipt-line/receipt-line.component';
+import { AddressComponent } from './components/address/address.component';
+import { AddressDetailsComponent } from './components/address-details/address-details.component';
+import { AddressEditComponent } from './components/address-edit/address-edit.component';
 
 
 
@@ -77,7 +80,10 @@ import { ReceiptLineComponent } from './pages/receipt/receipt-line/receipt-line.
     ArticleCategoryComponent,
     CustomerCategoryComponent,
     ReceiptComponent,
-    ReceiptLineComponent
+    ReceiptLineComponent,
+    AddressComponent,
+    AddressDetailsComponent,
+    AddressEditComponent
   ],
   imports: [
     BrowserModule,    

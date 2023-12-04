@@ -1,1 +1,129 @@
-<p>receipt works!</p>
+<div class="" *ngIf="showHeaders">
+  <h2>{{ this.title }}</h2>
+</div>
+
+<div *ngIf="mode == 0">loading</div>
+
+<app-list
+  #list
+  *ngIf="mode == 1"
+  [listView]="listView"
+  [fulltextSearch]="fulltextSearch"
+  [dataService]="dataService"
+  [tableStructure]="tableStructure"
+  onUpdateList="updateList()"
+  (onSetStatus)="setMode($event)"
+  [fixedSearchFilter]="fixedSearchFilter"
+  [searchFilter]="searchFilter"
+>
+</app-list>
+
+<app-detail *ngIf="mode == 3">
+  <div class="recordDetails">
+    <div class="detailHeader">
+      {{ currentRecord.receipttype + "/" + currentRecord.receipttype }}
+      <button type="button" class="btn btn-primary" (click)="openListMode()">Back to List mode</button>
+
+      <!-- <button *ngIf="currentRecord.record_status === 'active'" type="button" class="btn btn-danger" (click)="setToInactive()">Set inactive</button>
+             <button *ngIf="currentRecord.record_status !== 'active'" type="button" class="btn btn-primary" (click)="setToActive()">Reset to active</button>     -->
+      <button type="button" class="btn btn-primary" (click)="openEditMode(currentRecord.id)">Edit record</button>
+    </div>
+
+    <div class="recordDetail">
+      <div class="recordDetailLabel">Type:</div>
+      <div class="recordDetailValue">{{ currentRecord.receipttype }}</div>
+    </div>
+    <div class="recordDetail">
+      <div class="recordDetailLabel">Login-name:</div>
+      <div class="recordDetailValue">{{ currentRecord.receiptnumber }}</div>
+    </div>
+    <div class="recordDetail textarea">
+      <div class="recordDetailLabel">Notes:</div>
+      <div class="recordDetailValue">{{ currentRecord.description }}</div>
+    </div>
+
+    <div class="recordDetailLabel"></div>
+    <button class="btn btn-primary" (click)="addressSectionVisible = !addressSectionVisible">{{(addressSectionVisible ? 'Hide':'Show')}} address section</button>
+    <app-address-details *ngIf="addressSectionVisible" [address]="currentRecord.customer.address"></app-address-details>
+    <app-address-details *ngIf="addressSectionVisible" [address]="currentRecord.customer.shipping_address" [addressType]="'Shipping address'"></app-address-details>
+
+
+    <div class="recordDetail">
+      <div class="recordDetailLabel">Created:</div>
+      <div class="recordDetailValue">{{ currentRecord.created_at }} / {{ currentRecord.created_by_user?.name }}</div>
+    </div>
+    <div class="recordDetail">
+      <div class="recordDetailLabel">Last modified:</div>
+      <div class="recordDetailValue">{{ currentRecord.modified_at }} / {{ currentRecord.modified_by_user?.name }}</div>
+    </div>
+  </div>
+</app-detail>
+
+<app-edit *ngIf="mode == 2 || mode == 5" [create]="mode==5" (onSubmit)="handleEditFormSubmit($event)">
+  
+  <div class="recordEdits" >
+    <div class="form-group">
+      <label for="receipttype">Receipt-type</label>      
+      <select  class="form-control" name="receipttype" id="receipttype"  [disabled]="mode !==5 " [(ngModel)]="currentRecord.receipttype" >
+          <option *ngFor="let item of receiptTypes | keyvalue" value="{{item.key}}">
+            {{item.value}}
+          </option>
+      </select>      
+    </div>
+
+    <div class="form-group" *ngIf="mode==5">
+      <label for="receiptnumber">Number:</label>
+      <input class="form-control" id="receiptnumber" name="receiptnumber" placeholder="?????????" [(ngModel)]="currentRecord.receiptnumber" [disabled]="true" />
+      <div class="fieldErrorMessage">{{ fieldErrorMessages["receiptnumber"] }}</div>
+    </div>
+    <div class="form-group" >
+      <label for="duedate">Duedate:</label>
+      <input type="date" class="form-control" id="duedate" name="duedate" placeholder="duedate" [(ngModel)]="currentRecord.duedate"  />
+      <div class="fieldErrorMessage">{{ fieldErrorMessages["duedate"] }}</div>
+    </div>
+    
+
+    <div class="form-group">
+      <label for="customer_id">Customer:</label>
+      <app-reference-input
+        [service]="customerService"
+        [(targetIdField)]="currentRecord.customer_id"
+        [readonly]="currentRecord.id !== ''"
+        [disabled]="currentRecord.id !== ''"
+        [initalSearchText]="''"
+        [fieldListToShow]="['name', 'city', 'zipcode']"
+        (targetIdFieldChange)="customerChanged()"
+      />
+      <div class="fieldErrorMessage">{{ fieldErrorMessages["customer_id"] }}</div>
+    </div>
+    <div class="form-group">
+      <label for="currency_id">Curency:</label>
+      <app-reference-input
+        [service]="currencyService"
+        [(targetIdField)]="currentRecord.currency_id"
+        [readonly]="mode !== 5"
+        [disabled]="mode !== 5"
+        [initalSearchText]="''"
+        [fieldListToShow]="['id','name']"        
+      />
+      <div class="fieldErrorMessage">{{ fieldErrorMessages["currency_id"] }}</div>
+    </div>
+
+    
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description" name="description" placeholder="description" [(ngModel)]="currentRecord.description"> </textarea>
+      <div class="fieldErrorMessage">{{ fieldErrorMessages["description"] }}</div>
+    </div>
+    
+    <div class="recordDetails">
+      <button class="btn btn-primary" (click)="addressSectionVisible = !addressSectionVisible">{{(addressSectionVisible ? 'Hide':'Show')}} address section</button>
+      <app-address-details *ngIf="addressSectionVisible" [address]="currentRecord.customer.address"></app-address-details>
+      <app-address-details *ngIf="addressSectionVisible" [address]="currentRecord.customer.shipping_address" [addressType]="'Shipping address'"></app-address-details>
+    </div>
+
+
+    <hr />
+
+  </div>
+</app-edit>

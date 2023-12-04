@@ -16,18 +16,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 export abstract class BaseCrudComponent<ModelType> implements OnInit {
     @ViewChild('list') list!: ListComponent<ModelType>;
     
-    
     @Output() refreshParent: EventEmitter<any> = new EventEmitter();
 
     @Input() fixedSearchFilter: SearchMap = {};
     @Input() searchFilter: SearchMap = {};
     @Input() parentName: string = '';
     @Input() subTitle: string = '';
-
     @Input() showHeaders: boolean = true;
-
-
-
 
     listView: ListViewOptionType;
     afterSaveSwithcToListMode = false;
@@ -54,9 +49,6 @@ export abstract class BaseCrudComponent<ModelType> implements OnInit {
     public currentRecordId: string = '';
     public currentRecord: ModelType;
     public route: ActivatedRoute;
-
-
-
     displayDataStructure: DisplayDataStructure<ModelType>;
     tableStructure: DisplayField<ModelType>[] = [];
 

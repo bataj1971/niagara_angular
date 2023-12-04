@@ -15,8 +15,8 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.appService.subscribeForAppData().subscribe((data) => {
-      this.appData = data;
-    });
+    // this.appService.subscribeForAppData().subscribe((data) => {
+    //   this.appData = data;
+    // });
   }
 }

@@ -1,9 +1,6 @@
 export const environment = {
   production: true,
-  title: 'NiagaraAngular',
-    apiURL: 'http://localhost:80/NiagaraServer/api/',
-
-  title: 'NiagaraAngular',
-  apiURL: '/',
-  envName:'prod'
+  title: "NiagaraAngular",
+  apiURL: "https://niagaraapi.batajozsef.hu/api/",
+  envName: "prod",
 };

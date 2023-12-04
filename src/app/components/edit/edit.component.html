@@ -1,5 +1,5 @@
 <div class="editViewContainer">
-    <form #f="ngForm" (ngSubmit) = "submitForm()"  (keydown.control.enter)="saveForm()">
+    <form #f="ngForm" (ngSubmit) = "submitForm()"  (keydown.control.enter)="saveForm()"  (keydown.escape)="cancelForm()">
         <fieldset class="fieldContainer">
             <legend>{{title}} {{create ? 'Create' : 'Modify'}}</legend>
 

@@ -1,0 +1,51 @@
+        <hr>
+        
+        <div class="form-group">
+            <label for="name">{{addressType}}:</label>
+            
+        </div>
+        <div class="form-group">
+            <label for="name">Address-name:</label>
+            <input class="form-control" id="address_name" name="address_name" placeholder="address name" [(ngModel)]="address.name">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.name']}}</div>
+        </div>
+        <div class="form-group">
+            <label for="name">City:</label>
+            <input class="form-control" id="address_city" name="address_city" placeholder="city" [(ngModel)]="address.city">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.city']}}</div>
+        </div>
+        <div class="form-group">
+            <label for="name">Street:</label>
+            <input class="form-control" id="address_street" name="address_street" placeholder="street" [(ngModel)]="address.street">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.street']}}</div>
+        </div>
+        <div class="form-group">
+            <label for="name">Zipcode:</label>
+            <input class="form-control" id="address_zipcode" name="address_zipcode" placeholder="zipcode" [(ngModel)]="address.zipcode">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.zipcode']}}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="name">State:</label>
+            <input class="form-control" id="address_state" name="address_state" placeholder="state" [(ngModel)]="address.state">
+            <div class="fieldErrorMessage">{{fieldErrorMessages['address.state']}}</div>
+        </div>
+
+    <div class="form-group">
+      <label for="country_id">Country:</label>
+      <app-reference-input
+        [service]="countryService"
+        [(targetIdField)]="address.country_id"
+        [initalSearchText]="''"
+        [fieldListToShow]="['id','name']"        
+      />
+      <div class="fieldErrorMessage">{{ fieldErrorMessages["country_id"] }}</div>
+    </div>        
+        
+        <div class="form-group">
+            <label for="description">Address notes:</label>
+            <textarea class="form-control" id="description" name="description" placeholder="description"
+                [(ngModel)]="address.description">
+                <div class="fieldErrorMessage">{{fieldErrorMessages['address.description']}}</div>
+        </textarea>
+

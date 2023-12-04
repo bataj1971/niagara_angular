@@ -10,20 +10,22 @@ export class AppService extends BaseService<AppDataModel> {
   assDataSubject = new BehaviorSubject<AppDataModel>(this.getEmptyRecord());
   appData: AppDataModel = this.getEmptyRecord();
   languageId = "default";
+  loaded = false;
 
   override setPath(): void {
     this.path = "appdata/";
   }
 
   override async initService() {
-    console.log("AppService::initService start");
-
     this.appData = await this.getById("appdata");
-    this.assDataSubject.next(this.appData);
-    const greetingName = this.appData.firstName ?? this.appData.userName;
-    this.messageManagerService.addMessage("Welcome " + greetingName + "!");
+    if (!this.loaded) {
+      this.assDataSubject.next(this.appData);
+      const greetingName = this.appData.firstName ?? this.appData.userName;
+      this.messageManagerService.addMessage("Welcome " + greetingName + "!");
+      this.loaded = true;
 
-    this.dictionaryService.setDictionary(this.appData.dictionary);
+      this.dictionaryService.setDictionary(this.appData.dictionary);
+    }
     console.log("AppService::initService ready");
   }
 
@@ -33,9 +35,9 @@ export class AppService extends BaseService<AppDataModel> {
 
   override getEmptyRecord(): AppDataModel {
     return {
-      userName: "",
-      firstName: "",
-      lastName: "",
+      userName: "johndoe",
+      firstName: "John",
+      lastName: "Doe",
       isAdmin: false,
       id: "",
       languageId: "",

@@ -60,7 +60,7 @@ onUpdateList="updateList()"
     
 </app-detail>
 
-<app-edit *ngIf="mode==2 ||mode==5" (onSubmit)="handleEditFormSubmit($event)">
+<app-edit *ngIf="mode==2 ||mode==5" [create]="mode==5" (onSubmit)="handleEditFormSubmit($event)">
 
     <div class="recordEdits">
         <div class="form-group">

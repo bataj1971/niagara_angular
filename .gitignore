@@ -2,6 +2,7 @@
 
 # Compiled output
 /dist
+/niagara_angular_prod
 /tmp
 /out-tsc
 /bazel-out

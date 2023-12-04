@@ -5,6 +5,7 @@ export class AddressModel {
   street: string = "";
   zipcode: string = "";
   state: string = "";
+  country_id: string = "HU";
   description: string = "";
 }
 

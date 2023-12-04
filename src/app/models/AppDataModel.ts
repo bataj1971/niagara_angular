@@ -5,11 +5,6 @@ export interface AppDataModel {
     isAdmin:boolean,
     id:string,
     languageId:string,
-    stockStat?:{
-        activeStockCount?:number,
-        openStockEventCount?:number,
-        openUserEventCount?:number,
-    },
     dictionary:Dictionary
 }
 
